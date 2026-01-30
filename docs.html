@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Documentación — Procedural Dungeon Generator" />
+  <title>Docs — AlbertojaGames</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <p class="brandTitle">AlbertojaGames</p>
+          <p class="brandSub">Docs · Procedural Dungeon Generator</p>
+        </div>
+      </div>
+
+      <nav class="navlinks">
+        <a class="chip" href="index.html">Home</a>
+        <a class="chip" href="docs.html">Docs</a>
+        <a class="chip" href="changelog.html">Changelog</a>
+        <a class="chip" href="privacy.html">Privacy</a>
+        <a class="chip" href="mailto:albertoja.games@gmail.com">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Documentación</h1>
+      <p>
+        Guía de instalación, configuración y uso. (Ajusta estos apartados a tu implementación real.)
+      </p>
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="mailto:albertoja.games@gmail.com?subject=Support%20-%20Procedural%20Dungeon%20Generator">Pedir soporte</a>
+        <a class="btn" href="changelog.html">Ver changelog</a>
+      </div>
+      <div class="breadcrumb">Home / Docs</div>
+    </section>
+
+    <main class="card">
+      <div class="sectionTitle">
+        <h2>Quick Start</h2>
+        <small>5 minutos</small>
+      </div>
+
+      <ol class="muted" style="margin: 10px 0 0; padding-left: 18px;">
+        <li>Importa el paquete en Unity (Assets → Import Package o Package Manager, según tu formato).</li>
+        <li>Abre la escena de ejemplo (si incluye) o crea una escena vacía.</li>
+        <li>Añade el objeto “DungeonGenerator” (prefab) a la escena.</li>
+        <li>Configura la <b>Seed</b> y pulsa <b>Generate</b>.</li>
+        <li>Guarda la escena o exporta el layout si tu herramienta lo permite.</li>
+      </ol>
+
+      <hr />
+
+      <h2>Requisitos</h2>
+      <ul>
+        <li>Unity: (pon aquí tu versión mínima recomendada)</li>
+        <li>Pipeline: Built-in / URP / HDRP (indica compatibilidad real)</li>
+        <li>Plataforma: Windows/Mac (y otras si aplica)</li>
+      </ul>
+
+      <hr />
+
+      <h2>Conceptos</h2>
+      <ul>
+        <li><b>Seed</b>: misma semilla = mismo layout.</li>
+        <li><b>Rooms/Corridors</b>: reglas de colocación y conexión.</li>
+        <li><b>Multi-Floor</b>: cada planta genera su layout y se conecta con escaleras.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Ejemplo (pseudo)</h2>
+      <p class="muted">
+        Sustituye esto por tu API real. Si no tienes API pública, elimina este bloque.
+      </p>
+      <pre><code>// Ejemplo orientativo (pseudo):
+generator.Seed = 12345;
+generator.Floors = 3;
+generator.Generate();
+</code></pre>
+
+      <hr />
+
+      <h2>Soporte y bugs</h2>
+      <p class="muted">
+        Envía email a <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a> incluyendo:
+      </p>
+      <ul>
+        <li>Versión de Unity</li>
+        <li>Pipeline (URP/HDRP/Built-in)</li>
+        <li>Pasos para reproducir</li>
+        <li>Logs/capturas si aplica</li>
+      </ul>
+    </main>
+
+    <footer>
+      <div>
+        © <span id="year"></span> AlbertojaGames <span class="sep">·</span>
+        <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
+      </div>
+      <div class="muted2">Docs</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
