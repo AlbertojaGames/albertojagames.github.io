@@ -1,4 +1,4 @@
-/* AlbertojaGames — minimal dark theme */
+/* AlbertojaGames — minimal dark theme (v2) */
 :root{
   --bg:#0b0f14;
   --card:#111826;
@@ -118,4 +118,47 @@ pre{
   border-radius: 12px;
   padding: 12px;
   overflow:auto;
+}
+
+/* Copy-friendly email block */
+.contactBox{
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.emailBlock{
+  flex: 1 1 260px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.25);
+  border-radius:12px;
+  padding:12px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.emailText{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+  font-size:14px;
+  color: var(--text);
+  user-select: all;
+}
+.smallBtn{
+  padding:9px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--btn);
+  color: var(--text);
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+}
+.smallBtn:hover{ background: var(--btnHover); }
+.toast{
+  margin-top:8px;
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 18px;
 }

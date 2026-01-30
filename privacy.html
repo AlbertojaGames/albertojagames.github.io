@@ -22,17 +22,13 @@
     <a class="pill" href="docs.html">Docs</a>
     <a class="pill" href="changelog.html">Changelog</a>
     <a class="pill" href="privacy.html">Privacy</a>
-    <a class="pill" href="mailto:albertoja.games@gmail.com">Contact</a>
+    <a class="pill" href="https://mail.google.com/mail/?view=cm&fs=1&to=albertoja.games@gmail.com" target="_blank" rel="noopener">Email</a>
   </nav>
 </header>
 
     <section class="hero">
       <h1>Privacy</h1>
       <p class="muted">Simple privacy statement for this publisher website.</p>
-      <div class="row">
-        <a class="btn" href="index.html">Home</a>
-        <a class="btn" href="mailto:albertoja.games@gmail.com">Contact</a>
-      </div>
     </section>
 
     <main class="card">
@@ -43,9 +39,21 @@
 
       <h2>Email support</h2>
       <p class="muted">
-        If you contact <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>, your email is used only
-        to respond to your request and provide support.
+        If you contact albertoja.games@gmail.com, your email is used only to respond to your request and provide support.
       </p>
+
+      <hr />
+
+      <h2>Support contact</h2>
+      <p class="muted">Copy the email or open Gmail:</p>
+      <div class="contactBox">
+  <div class="emailBlock" title="Click and drag to select">
+    <div class="emailText">albertoja.games@gmail.com</div>
+    <button class="smallBtn" type="button" onclick="copySupportEmail()">Copy</button>
+  </div>
+  <button class="btn" type="button" onclick="openGmailCompose()">Open Gmail</button>
+</div>
+<div id="toast" class="toast"></div>
 
       <hr />
 
@@ -55,10 +63,48 @@
 
     <footer>
       <div>© <span id="y"></span> AlbertojaGames</div>
-      <div><a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a></div>
+      <div>albertoja.games@gmail.com</div>
     </footer>
   </div>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+  const SUPPORT_EMAIL = "albertoja.games@gmail.com";
+
+  function copySupportEmail() {
+    const toast = document.getElementById("toast");
+    const done = () => { if(toast) toast.textContent = "Copied."; };
+    const fail = () => { if(toast) toast.textContent = "Copy failed. You can select and copy the email."; };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(SUPPORT_EMAIL).then(done).catch(fail);
+      return;
+    }
+
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = SUPPORT_EMAIL;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      ta.style.top = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      ok ? done() : fail();
+    } catch(e) {
+      fail();
+    }
+  }
+
+  function openGmailCompose() {
+    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=albertoja.games@gmail.com", "_blank", "noopener");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const y = document.getElementById("y");
+    if (y) y.textContent = new Date().getFullYear();
+  });
+</script>
 </body>
 </html>
