@@ -1,114 +1,127 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Documentación — Procedural Dungeon Generator" />
+  <meta name="description" content="Documentation — Procedural Map Generator" />
   <title>Docs — AlbertojaGames</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-
 <body>
-  <div class="wrap">
+  <div class="container">
     <header class="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <p class="brandTitle">AlbertojaGames</p>
-          <p class="brandSub">Docs · Procedural Dungeon Generator</p>
-        </div>
-      </div>
-
-      <nav class="navlinks">
-        <a class="chip" href="index.html">Home</a>
-        <a class="chip" href="docs.html">Docs</a>
-        <a class="chip" href="changelog.html">Changelog</a>
-        <a class="chip" href="privacy.html">Privacy</a>
-        <a class="chip" href="mailto:albertoja.games@gmail.com">Contact</a>
-      </nav>
-    </header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true"></div>
+    <div>
+      <strong>AlbertojaGames</strong>
+      <span>Unity Publisher · Tools</span>
+    </div>
+  </div>
+  <nav class="links">
+    <a class="pill" href="index.html">Home</a>
+    <a class="pill" href="docs.html">Docs</a>
+    <a class="pill" href="changelog.html">Changelog</a>
+    <a class="pill" href="privacy.html">Privacy</a>
+    <a class="pill" href="mailto:albertoja.games@gmail.com">Contact</a>
+  </nav>
+</header>
 
     <section class="hero">
-      <h1>Documentación</h1>
-      <p>
-        Guía de instalación, configuración y uso. (Ajusta estos apartados a tu implementación real.)
-      </p>
-      <div class="ctaRow">
-        <a class="btn btnPrimary" href="mailto:albertoja.games@gmail.com?subject=Support%20-%20Procedural%20Dungeon%20Generator">Pedir soporte</a>
-        <a class="btn" href="changelog.html">Ver changelog</a>
+      <h1>Documentation</h1>
+      <p class="muted">Setup, workflow, and technical details for <strong>Procedural Map Generator</strong>.</p>
+      <div class="row">
+        <a class="btn" href="index.html">Back to home</a>
+        <a class="btn" href="mailto:albertoja.games@gmail.com?subject=Support%20-%20Procedural%20Map%20Generator">Email support</a>
       </div>
-      <div class="breadcrumb">Home / Docs</div>
     </section>
 
     <main class="card">
-      <div class="sectionTitle">
-        <h2>Quick Start</h2>
-        <small>5 minutos</small>
-      </div>
-
-      <ol class="muted" style="margin: 10px 0 0; padding-left: 18px;">
-        <li>Importa el paquete en Unity (Assets → Import Package o Package Manager, según tu formato).</li>
-        <li>Abre la escena de ejemplo (si incluye) o crea una escena vacía.</li>
-        <li>Añade el objeto “DungeonGenerator” (prefab) a la escena.</li>
-        <li>Configura la <b>Seed</b> y pulsa <b>Generate</b>.</li>
-        <li>Guarda la escena o exporta el layout si tu herramienta lo permite.</li>
-      </ol>
+      <h2>Overview</h2>
+      <p class="muted">Procedural Map Generator is a grid-based dungeon generation tool for Unity focused on fast iteration and deterministic results. Using a single integer seed, it generates a connected layout of rooms and corridors and can link multiple floors using stair ramps. This asset is ideal for roguelikes, dungeon crawlers, challenge seeds, or any project where you want repeatable procedural levels for debugging, multiplayer synchronization, or daily/weekly runs.</p>
 
       <hr />
 
-      <h2>Requisitos</h2>
+      <h2>Highlights</h2>
       <ul>
-        <li>Unity: (pon aquí tu versión mínima recomendada)</li>
-        <li>Pipeline: Built-in / URP / HDRP (indica compatibilidad real)</li>
-        <li>Plataforma: Windows/Mac (y otras si aplica)</li>
+        <li>Deterministic generation: the same seed always produces the same layout.</li>
+<li>Room templates (ScriptableObjects): define room size, pivot mode, and door layout.</li>
+<li>Corridor prefab pooling: supports dead-ends, straights, corners, T-junctions and crossings with fallbacks.</li>
+<li>Multi-floor support: connects floors using stair ramp spans.</li>
+<li>Inspector-driven workflow: Generate (Seed), Generate (Random Seed), and Clear.</li>
+<li>Optional NavMesh rebuild hook (when a NavMeshSurface is assigned).</li>
+<li>Optional Netcode for GameObjects helper for syncing config + seed (enabled via scripting define).</li>
       </ul>
 
       <hr />
 
-      <h2>Conceptos</h2>
+      <h2>What’s included</h2>
       <ul>
-        <li><b>Seed</b>: misma semilla = mismo layout.</li>
-        <li><b>Rooms/Corridors</b>: reglas de colocación y conexión.</li>
-        <li><b>Multi-Floor</b>: cada planta genera su layout y se conecta con escaleras.</li>
+        <li>Runtime scripts</li>
+<li>Demo setup</li>
+<li>Offline documentation (PDF) + README + changelog</li>
       </ul>
 
       <hr />
 
-      <h2>Ejemplo (pseudo)</h2>
-      <p class="muted">
-        Sustituye esto por tu API real. Si no tienes API pública, elimina este bloque.
-      </p>
-      <pre><code>// Ejemplo orientativo (pseudo):
-generator.Seed = 12345;
-generator.Floors = 3;
-generator.Generate();
-</code></pre>
+      <h2>Optional dependencies</h2>
+      <ul>
+        <li>AI Navigation (for NavMeshSurface rebuild)</li>
+<li>Netcode for GameObjects (for the sync helper; enable with MAPGEN_USE_NGO)</li>
+      </ul>
 
       <hr />
 
-      <h2>Soporte y bugs</h2>
+      <h2>Notes</h2>
+      <ul>
+        <li>This is a grid-based generator and expects prefabs to be aligned to the configured cell spacing.</li>
+<li>Demo content is provided for quick testing and learning.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Inspector workflow</h2>
+      <ul>
+        <li><strong>Generate (Seed):</strong> Uses the current integer seed and generates the layout.</li>
+        <li><strong>Generate (Random Seed):</strong> Picks a random seed and generates a new layout.</li>
+        <li><strong>Clear:</strong> Removes the generated content from the scene.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Technical details</h2>
+      <table>
+        <tbody>
+          <tr><th style="width:32%">Unity version</th><td class="muted">2021.3 LTS or newer (recommended)</td></tr>
+<tr><th style="width:32%">Platforms</th><td class="muted">All platforms supported by Unity (code-only asset)</td></tr>
+<tr><th style="width:32%">Render pipeline</th><td class="muted">Built-in / URP / HDRP (no pipeline-specific shaders required)</td></tr>
+<tr><th style="width:32%">Netcode (optional)</th><td class="muted">Netcode for GameObjects (enable with MAPGEN_USE_NGO)</td></tr>
+<tr><th style="width:32%">NavMesh rebuild (optional)</th><td class="muted">AI Navigation (NavMeshSurface)</td></tr>
+<tr><th style="width:32%">Runtime scripts included</th><td class="muted">3</td></tr>
+<tr><th style="width:32%">Scripts</th><td class="muted">MapGenerator.cs, RoomTemplateSO.cs, FloorManagerSeedSync.cs (optional)</td></tr>
+<tr><th style="width:32%">Demo</th><td class="muted">Included</td></tr>
+<tr><th style="width:32%">Documentation</th><td class="muted">Included (offline PDF + README + changelog)</td></tr>
+<tr><th style="width:32%">Setup time</th><td class="muted">~5–10 minutes (with provided demo and docs)</td></tr>
+        </tbody>
+      </table>
+
+      <hr />
+
+      <h2>Support</h2>
       <p class="muted">
-        Envía email a <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a> incluyendo:
+        Email: <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
       </p>
       <ul>
-        <li>Versión de Unity</li>
-        <li>Pipeline (URP/HDRP/Built-in)</li>
-        <li>Pasos para reproducir</li>
-        <li>Logs/capturas si aplica</li>
+        <li>Include your Unity version, render pipeline (URP/HDRP/Built-in), and steps to reproduce.</li>
+        <li>Attach console logs and screenshots if relevant.</li>
       </ul>
     </main>
 
     <footer>
-      <div>
-        © <span id="year"></span> AlbertojaGames <span class="sep">·</span>
-        <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
-      </div>
-      <div class="muted2">Docs</div>
+      <div>© <span id="y"></span> AlbertojaGames</div>
+      <div><a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a></div>
     </footer>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

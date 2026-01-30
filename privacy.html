@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,74 +7,58 @@
   <title>Privacy — AlbertojaGames</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-
 <body>
-  <div class="wrap">
+  <div class="container">
     <header class="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <p class="brandTitle">AlbertojaGames</p>
-          <p class="brandSub">Privacy</p>
-        </div>
-      </div>
-
-      <nav class="navlinks">
-        <a class="chip" href="index.html">Home</a>
-        <a class="chip" href="docs.html">Docs</a>
-        <a class="chip" href="changelog.html">Changelog</a>
-        <a class="chip" href="privacy.html">Privacy</a>
-        <a class="chip" href="mailto:albertoja.games@gmail.com">Contact</a>
-      </nav>
-    </header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true"></div>
+    <div>
+      <strong>AlbertojaGames</strong>
+      <span>Unity Publisher · Tools</span>
+    </div>
+  </div>
+  <nav class="links">
+    <a class="pill" href="index.html">Home</a>
+    <a class="pill" href="docs.html">Docs</a>
+    <a class="pill" href="changelog.html">Changelog</a>
+    <a class="pill" href="privacy.html">Privacy</a>
+    <a class="pill" href="mailto:albertoja.games@gmail.com">Contact</a>
+  </nav>
+</header>
 
     <section class="hero">
-      <h1>Privacy Policy</h1>
-      <p>Política simple para tu web de publisher (útil si en el futuro añades formularios o analytics).</p>
-      <div class="breadcrumb">Home / Privacy</div>
+      <h1>Privacy</h1>
+      <p class="muted">Simple privacy statement for this publisher website.</p>
+      <div class="row">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="mailto:albertoja.games@gmail.com">Contact</a>
+      </div>
     </section>
 
     <main class="card">
-      <h2>Resumen</h2>
+      <h2>Data</h2>
+      <p class="muted">This website does not collect analytics or store personal data automatically.</p>
+
+      <hr />
+
+      <h2>Email support</h2>
       <p class="muted">
-        Esta web es una página informativa de publisher. No usamos cookies de tracking ni almacenamos datos personales
-        de forma automática.
+        If you contact <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>, your email is used only
+        to respond to your request and provide support.
       </p>
 
       <hr />
 
-      <h2>Contacto por email</h2>
-      <p class="muted">
-        Si nos escribes a <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>, recibiremos tu mensaje
-        y lo usaremos únicamente para responder a tu consulta o dar soporte.
-      </p>
-
-      <hr />
-
-      <h2>Servicios de terceros</h2>
-      <p class="muted">
-        Actualmente no se usan herramientas de analítica. Si se añaden en el futuro, esta página se actualizará.
-      </p>
-
-      <hr />
-
-      <h2>Actualizaciones</h2>
-      <p class="muted">
-        Última actualización: Jan 2026
-      </p>
+      <h2>Updates</h2>
+      <p class="muted">Last updated: 2026-01-30</p>
     </main>
 
     <footer>
-      <div>
-        © <span id="year"></span> AlbertojaGames <span class="sep">·</span>
-        <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
-      </div>
-      <div class="muted2">Privacy</div>
+      <div>© <span id="y"></span> AlbertojaGames</div>
+      <div><a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a></div>
     </footer>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
