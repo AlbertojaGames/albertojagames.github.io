@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="AlbertojaGames — Unity Publisher. Herramientas y sistemas para Unity: generación procedural, gameplay tools y más." />
+  <title>AlbertojaGames — Unity Publisher</title>
+
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --accent: #7cc4ff;
+      --accent2: #a78bfa;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(124,196,255,.18), transparent 55%),
+                  radial-gradient(1000px 500px at 80% 10%, rgba(167,139,250,.14), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height: 1.55;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px; }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky; top: 12px; z-index: 10;
+    }
+
+    .brand{ display:flex; align-items:center; gap: 12px; }
+    .logo{
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,196,255,.85), rgba(167,139,250,.85));
+      box-shadow: 0 8px 18px rgba(124,196,255,.18);
+    }
+    .brand h1{ margin:0; font-size: 15px; letter-spacing:.2px; }
+    .brand p{ margin:0; font-size: 12px; color: var(--muted2); }
+
+    .navlinks{ display:flex; flex-wrap:wrap; gap: 10px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chip:hover{ background: rgba(255,255,255,.06); text-decoration:none; }
+
+    .hero{
+      margin-top: 22px;
+      padding: 32px 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 240px at 15% 20%, rgba(124,196,255,.16), transparent 60%),
+                  radial-gradient(650px 240px at 85% 30%, rgba(167,139,250,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .hero > *{ position:relative; }
+    .hero h2{ margin:0 0 10px; font-size: 34px; line-height: 1.15; }
+    .hero p{ margin:0 0 18px; color: var(--muted); max-width: 70ch; }
+    .ctaRow{ display:flex; gap: 10px; flex-wrap:wrap; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.08); text-decoration:none; }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(124,196,255,.22), rgba(167,139,250,.20));
+      border-color: rgba(124,196,255,.35);
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 960px){
+      .grid{ grid-template-columns: 1.2fr .8fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .card h3{ margin: 0 0 10px; font-size: 18px; }
+    .muted{ color: var(--muted); }
+    .muted2{ color: var(--muted2); }
+    .tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px; }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .assetBox{
+      display:flex; flex-direction:column; gap:12px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(124,196,255,.25);
+      background: radial-gradient(600px 250px at 30% 20%, rgba(124,196,255,.10), transparent 60%),
+                  rgba(255,255,255,.03);
+    }
+    .assetTitle{ display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; }
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(124,196,255,.10);
+      border: 1px solid rgba(124,196,255,.25);
+      color: rgba(255,255,255,.85);
+      white-space: nowrap;
+    }
+    .kv{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
+    .kvRow{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .kvRow b{ font-size: 13px; }
+    .kvRow span{ font-size: 13px; color: var(--muted); text-align:right; }
+
+    .faq details{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+    .faq summary{
+      cursor:pointer;
+      font-weight: 650;
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq p{ margin: 10px 0 0; color: var(--muted); }
+
+    footer{
+      margin-top: 22px;
+      padding: 18px 6px 0;
+      color: var(--muted2);
+      font-size: 12.5px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sep{ color: rgba(255,255,255,.25); padding: 0 8px; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>AlbertojaGames</h1>
+          <p>Unity Publisher · Tools & Gameplay Systems</p>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a class="chip" href="#portfolio">Portfolio</a>
+        <a class="chip" href="#support">Soporte</a>
+        <a class="chip" href="#about">Sobre mí</a>
+        <a class="chip" href="#faq">FAQ</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h2>Herramientas de Unity listas para producción.</h2>
+      <p>
+        Desarrollo sistemas y herramientas centradas en generación procedural, prototipado rápido y workflows limpios.
+        Si compras un asset mío, tendrás soporte directo y actualizaciones con enfoque práctico.
+      </p>
+
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="#portfolio">Ver portfolio</a>
+        <a class="btn" href="mailto:albertoja.games@gmail.com">Contactar</a>
+        <!-- Consejo: para evitar rechazo, no pongas marketplaces como CTA principal.
+             Cuando te aprueben, puedes añadir un enlace a tu Asset Store en un botón secundario. -->
+      </div>
+    </section>
+
+    <div class="grid">
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="card">
+        <h3>Portfolio</h3>
+        <p class="muted">
+          Publicaciones y herramientas. (Iré añadiendo más proyectos aquí.)
+        </p>
+
+        <div class="assetBox" style="margin-top:14px;">
+          <div class="assetTitle">
+            <div>
+              <h3 style="margin:0;">Procedural Dungeon Generator</h3>
+              <p class="muted" style="margin:6px 0 0;">
+                Generador de mazmorras con semilla y soporte multi-planta con escaleras.
+              </p>
+            </div>
+            <span class="pill">Unity Asset</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Procedural</span>
+            <span class="tag">Seeded</span>
+            <span class="tag">Multi-Floor</span>
+            <span class="tag">Stairs</span>
+            <span class="tag">Tools</span>
+          </div>
+
+          <div class="kv">
+            <div class="kvRow">
+              <b>Estado</b>
+              <span>En revisión / publicación</span>
+            </div>
+            <div class="kvRow">
+              <b>Uso recomendado</b>
+              <span>Prototipado rápido y proyectos comerciales</span>
+            </div>
+            <div class="kvRow">
+              <b>Soporte</b>
+              <span>Email directo · Respuesta habitual 24–72h</span>
+            </div>
+          </div>
+
+          <p class="muted2" style="margin: 10px 0 0; font-size: 13px;">
+            Nota: cuando esté aprobado, añadiré aquí el enlace oficial del Asset Store.
+          </p>
+        </div>
+      </section>
+
+      <!-- SOPORTE -->
+      <section id="support" class="card">
+        <h3>Soporte</h3>
+        <p class="muted">
+          Para soporte técnico, bugs, dudas de integración o consultas comerciales:
+        </p>
+        <p style="margin: 10px 0 0;">
+          <a class="btn btnPrimary" href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
+        </p>
+
+        <div style="margin-top:14px;">
+          <h3 style="margin: 16px 0 8px; font-size: 16px;">Qué incluir en tu mensaje</h3>
+          <ul class="muted" style="margin:0; padding-left: 18px;">
+            <li>Versión de Unity + plataforma (Windows/Mac)</li>
+            <li>Pasos para reproducir el problema</li>
+            <li>Captura o log si aplica</li>
+            <li>Si usas URP/HDRP/Built-in</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:14px;">
+          <h3 style="margin: 16px 0 8px; font-size: 16px;">Política de soporte</h3>
+          <p class="muted" style="margin:0;">
+            Respuesta habitual en 24–72h. Bugs reproducibles se priorizan para hotfix.
+          </p>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="card">
+        <h3>Sobre mí</h3>
+        <p class="muted">
+          Soy desarrollador de Unity y me enfoco en crear herramientas prácticas:
+          generación procedural, sistemas de gameplay y flujos de trabajo que ahorran tiempo.
+        </p>
+        <p class="muted">
+          Me gusta que los assets sean fáciles de integrar: documentación clara, ejemplos y soporte real.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="card faq">
+        <h3>FAQ</h3>
+
+        <details>
+          <summary>¿Unity me acepta esta web para “Publisher Website”?</summary>
+          <p>
+            Sí, porque es una web pública funcional con contenido y un método de contacto visible.
+            Evita que el único objetivo sea redirigir a marketplaces.
+          </p>
+        </details>
+
+        <details>
+          <summary>¿Puedo enlazar mi Asset Store aquí?</summary>
+          <p>
+            Sí, pero mejor como enlace secundario cuando ya esté aprobado. Para pasar la revisión inicial,
+            es más seguro no usar marketplaces como CTA principal.
+          </p>
+        </details>
+
+        <details>
+          <summary>¿Dónde pongo documentación y changelog?</summary>
+          <p>
+            Puedes subir un PDF o un README en el repo y enlazarlo. Si quieres, te preparo una página “docs.html”
+            y una “changelog.html” para que quede aún más profesional.
+          </p>
+        </details>
+      </section>
+    </div>
+
+    <footer>
+      <div>
+        © <span id="year"></span> AlbertojaGames <span class="sep">·</span>
+        <a href="mailto:albertoja.games@gmail.com">albertoja.games@gmail.com</a>
+      </div>
+      <div class="muted2">Última actualización: Jan 2026</div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
